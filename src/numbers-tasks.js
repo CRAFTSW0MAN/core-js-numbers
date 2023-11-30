@@ -38,27 +38,6 @@ function getCircleCircumference(radius) {
 }
 
 /**
- * Returns an average of two given numbers.
- *
- * @param {number} value1
- * @param {number} value2
- * @return {number}
- *
- * @example:
- *   5, 5  => 5
- *  10, 0  => 5
- *  -3, 3  => 0
- */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
-  //   const result = (value1 + value2) / 2;
-  //   if (result === Infinity) {
-  //     return +Infinity;
-  //   }
-  //   return result;
-}
-
-/**
  * Returns a distance between two points by cartesian coordinates.
  *
  * @param {number} x1
@@ -96,27 +75,6 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  */
 function getLinearEquationRoot(a, b) {
   return -b / a;
-}
-
-/**
- * Returns an angle (in radians) between two vectors given by xi and yi,
- * coordinates in Cartesian plane.
- * See details https://en.wikipedia.org/wiki/Euclidean_vector#Representations
- *
- * @param {number} x1
- * @param {number} y1
- * @param {number} x2
- * @param {number} y2
- * @return {number}
- *
- * @example:
- *   (1,0) (0,1)     => π/2
- *   (0,1) (0,-1)    => π
- *   (0,-1) (1,0)    => π/2
- *   (0,1) (0,1)     => 0
- */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
 }
 
 /**
@@ -215,25 +173,6 @@ function isPrime(n) {
     }
   }
   return isBoolen;
-}
-
-/**
- * Tries to convert value to number and returns it if conversion was successful;
- * otherwise returns default value passed as a second argument.
- *
- * @param {any} value
- * @param {any} def
- * @return {number}
- *
- * @example
- *   toNumber(null, 0) => 0
- *   toNumber('test', 0) => 0
- *   toNumber('1', 0) => 1
- *   toNumber(42, 0) => 42
- *   toNumber(new Number(42), 0) => 42
- */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
 }
 
 /**
@@ -500,18 +439,65 @@ function getNumberValue(number) {
 }
 
 /**
- * Returns true if the given number is a power of two, false otherwise.
+ * Returns a random integer in the range from min to max.
  *
- * @param {number} num
- * @return {boolean}
+ * @param {number} min
+ * @param {number} max
+ * @return {number}
  *
  * @example:
- *   4   => true
- *   16  => true
- *   15  => false
+ * 1, 2  => 1 | 2
+ * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
+ * -1, 1 => -1 | 0 | 1
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Returns a floating point number or, if the number cannot be parsed from the argument, returns NaN.
+ *
+ * @param {string} str
+ * @return {number | NaN}
+ *
+ * @example:
+ * '4.567abcdefgh' => 4.567
+ * 'abcdefgh'      => NaN
+ */
+function getFloatOnString(str) {
+  return Number.parseFloat(str);
+}
+
+/**
+ * Returns an integer of the specified base or, if the number cannot be parsed
+ * from the argument, returns NaN.
+ *
+ * @param {string} str
+ * @param {number} base
+ * @return {number | NaN}
+ *
+ * @example:
+ * '4.567abcdefgh', 10  => 4
+ * 'abcdefgh', 10       => NaN
+ * '1.234', 2           => 1
+ * '10', 8              => 8
+ */
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
+}
+
+/**
+ * Returns the length of the hypotenuse of a right triangle.
+ *
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
+ *
+ * @example:
+ * 3, 4 => 5
+ */
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
 }
 
 /**
@@ -529,40 +515,8 @@ function isPowerOfTwo(/* num */) {
  * 5        => true
  * '5'      => false
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
-}
-
-/**
- * Returns a floating point number or, if the number cannot be parsed from the argument, returns NaN.
- *
- * @param {string} str
- * @return {number | NaN}
- *
- * @example:
- * '4.567abcdefgh' => 4.567
- * 'abcdefgh'      => NaN
- */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
-}
-
-/**
- * Returns an integer of the specified base or, if the number cannot be parsed
- * from the argument, returns NaN.
- *
- * @param {string} str
- * @param {number} base
- * @return {number | NaN}
- *
- * @example:
- * '4.567abcdefgh', 10  => 4
- * 'abcdefgh', 10       => NaN
- * '1.234', 2           => 1
- * '10', 8              => 8
- */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function isNumber(number) {
+  return Number.isFinite(number);
 }
 
 /**
@@ -577,38 +531,88 @@ function getIntegerOnString(/* str, base */) {
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
  */
-function getSumOfNumbers(/* x1, x2, x3 */) {
-  throw new Error('Not implemented');
+function getSumOfNumbers(x1, x2, x3) {
+  return (x1 + x2 + x3).toFixed(2);
 }
 
 /**
- * Returns a random integer in the range from min to max.
+ * Returns an average of two given numbers.
  *
- * @param {number} min
- * @param {number} max
+ * @param {number} value1
+ * @param {number} value2
  * @return {number}
  *
  * @example:
- * 1, 2  => 1 | 2
- * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
- * -1, 1 => -1 | 0 | 1
+ *   5, 5  => 5
+ *  10, 0  => 5
+ *  -3, 3  => 0
  */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  return value1 / 2 + value2 / 2;
 }
 
 /**
- * Returns the length of the hypotenuse of a right triangle.
+ * Tries to convert value to number and returns it if conversion was successful;
+ * otherwise returns default value passed as a second argument.
  *
- * @param {number} a
- * @param {number} b
+ * @param {any} value
+ * @param {any} def
+ * @return {number}
+ *
+ * @example
+ *   toNumber(null, 0) => 0
+ *   toNumber('test', 0) => 0
+ *   toNumber('1', 0) => 1
+ *   toNumber(42, 0) => 42
+ *   toNumber(new Number(42), 0) => 42
+ */
+function toNumber(value, def) {
+  if (Number(value, 10)) {
+    return Number(value);
+  }
+  return def;
+}
+
+/**
+ * Returns an angle (in radians) between two vectors given by xi and yi,
+ * coordinates in Cartesian plane.
+ * See details https://en.wikipedia.org/wiki/Euclidean_vector#Representations
+ *
+ * @param {number} x1
+ * @param {number} y1
+ * @param {number} x2
+ * @param {number} y2
  * @return {number}
  *
  * @example:
- * 3, 4 => 5
+ *   (1,0) (0,1)     => π/2
+ *   (0,1) (0,-1)    => π
+ *   (0,-1) (1,0)    => π/2
+ *   (0,1) (0,1)     => 0
  */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  return Math.acos(
+    (x1 * x2 + y1 * y2) /
+      (Math.sqrt(x1 ** 2 + y1 ** 2) * Math.sqrt(x2 ** 2 + y2 ** 2))
+  );
+}
+
+/**
+ * Returns true if the given number is a power of two, false otherwise.
+ *
+ * @param {number} num
+ * @return {boolean}
+ *
+ * @example:
+ *   4   => true
+ *   16  => true
+ *   15  => false
+ */
+function isPowerOfTwo(num) {
+  if (Math.log2(num) % 1 === 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -624,8 +628,17 @@ function getHypotenuse(/* a, b */) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+function getCountOfOddNumbers(number) {
+  if (Math.abs(number) === 0) {
+    return 0;
+  }
+  let count = 0;
+  for (let i = 0; i <= Math.abs(number); i += 1) {
+    if (i % 2 !== 0) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 module.exports = {
